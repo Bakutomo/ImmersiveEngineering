@@ -8,6 +8,7 @@
 
 package blusunrize.immersiveengineering.common.blocks.cloth;
 
+import blusunrize.immersiveengineering.ImmersiveEngineering;
 import blusunrize.immersiveengineering.api.shader.CapabilityShader;
 import blusunrize.immersiveengineering.api.shader.CapabilityShader.ShaderWrapper;
 import blusunrize.immersiveengineering.api.shader.CapabilityShader.ShaderWrapper_Direct;
@@ -51,7 +52,7 @@ public class BalloonTileEntity extends ConnectorStructuralTileEntity implements 
 	public int style = 0;
 	public int colour0 = 0xffffff;
 	public int colour1 = 0xffffff;
-	public ShaderWrapper_Direct shader = new ShaderWrapper_Direct(new ResourceLocation("immersiveengineering", "balloon"));
+	public ShaderWrapper_Direct shader = new ShaderWrapper_Direct(new ResourceLocation(ImmersiveEngineering.MODID, "balloon"));
 
 	public BalloonTileEntity()
 	{
@@ -79,7 +80,7 @@ public class BalloonTileEntity extends ConnectorStructuralTileEntity implements 
 			requestModelDataUpdate();
 		if(nbt.contains("shader", NBT.TAG_COMPOUND))
 		{
-			shader = new ShaderWrapper_Direct(new ResourceLocation("immersiveengineering", "balloon"));
+			shader = new ShaderWrapper_Direct(new ResourceLocation(ImmersiveEngineering.MODID, "balloon"));
 			shader.deserializeNBT(nbt.getCompound("shader"));
 			reInitCapability();
 		}
@@ -187,7 +188,7 @@ public class BalloonTileEntity extends ConnectorStructuralTileEntity implements 
 		if(!heldItem.isEmpty()&&heldItem.getItem() instanceof IShaderItem)
 		{
 			if(this.shader==null)
-				this.shader = new ShaderWrapper_Direct(new ResourceLocation("immersiveengineering", "balloon"));
+				this.shader = new ShaderWrapper_Direct(new ResourceLocation(ImmersiveEngineering.MODID, "balloon"));
 			this.shader.setShaderItem(Utils.copyStackWithAmount(heldItem, 1));
 			markContainingBlockForUpdate(null);
 			return true;
