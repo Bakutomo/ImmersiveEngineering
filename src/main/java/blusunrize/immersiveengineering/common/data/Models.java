@@ -232,6 +232,9 @@ public class Models extends ModelGenerator
 		addItemModels("bullet_", out, Weapons.bullets.values());
 		out.accept(ModelHelper.createWithDynamicModel(rl("coresample"), locForItemModel(Misc.coresample)));
 
+		for(Item bag : Misc.shaderBag.values())
+			out.accept(ModelHelper.createBasicItem(rl("item/shader_bag"), locForItemModel(bag)));
+
 		out.accept(ModelHelper.createInventoryFence(ALU_FENCE_TEXTURE, locForItemModel(MetalDecoration.aluFence)));
 		out.accept(ModelHelper.createInventoryFence(STEEL_FENCE_TEXTURE, locForItemModel(MetalDecoration.steelFence)));
 		out.accept(ModelHelper.createInventoryFence(TREATED_FENCE_TEXTURE, locForItemModel(WoodenDecoration.treatedFence)));

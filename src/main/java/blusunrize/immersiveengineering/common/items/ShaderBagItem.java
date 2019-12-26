@@ -13,14 +13,10 @@ import blusunrize.immersiveengineering.common.items.IEItems.Misc;
 import blusunrize.immersiveengineering.common.util.ItemNBTHelper;
 import blusunrize.immersiveengineering.common.util.Utils;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Rarity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
@@ -49,15 +45,16 @@ public class ShaderBagItem extends IEBaseItem
 	}
 
 	@Override
-	public ITextComponent getDisplayName(ItemStack stack)
-	{
-		return new StringTextComponent(rarity.name()+" ").appendSibling(super.getDisplayName(stack));
-	}
-
-	@Override
 	public Rarity getRarity(ItemStack stack)
 	{
 		return rarity;
+	}
+
+	@Override
+	public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+		if (this.isInGroup(group) && ShaderRegistry.sortedRarityMap.contains(this.rarity)) {
+			items.add(new ItemStack(this));
+		}
 	}
 
 	@Override
